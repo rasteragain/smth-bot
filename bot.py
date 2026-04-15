@@ -176,7 +176,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         async with httpx.AsyncClient() as client:
             post_response = await client.post(
-                f"{WORKER_URL}/{handle}",
+                f"{WORKER_URL}/api/post",
                 json=payload,
                 headers=headers,
                 timeout=10.0
