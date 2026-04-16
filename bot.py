@@ -129,6 +129,10 @@ async def me(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except Exception as e:
         await reply_and_delete(update, f"error: {e}")
 
+async def getid(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    chat_id = update.effective_chat.id
+    await reply_and_delete(update, f"Your chat_id is {chat_id}")
+
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     telegram_id = str(update.message.chat_id)
@@ -200,6 +204,7 @@ def main():
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("link", link))
     app.add_handler(CommandHandler("me", me))
+    app.add_handler(CommandHandler("getid", getid))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
 
     app.run_polling()
